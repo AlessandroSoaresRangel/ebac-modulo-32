@@ -3,6 +3,8 @@ package org.example.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "TB_CURSO")
 public class Curso {
@@ -19,6 +21,9 @@ public class Curso {
 
     @Column(name = "DESCRICAO", length = 100, nullable = false)
     private String descricao;
+
+    @OneToMany(mappedBy = "curso")
+    private List<Matricula> matriculas;
 
 
     public long getId() {
@@ -39,6 +44,14 @@ public class Curso {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 
     public void setNome(String nome) {
